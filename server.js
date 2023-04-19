@@ -6,13 +6,25 @@ const simpleGit = require('simple-git')
 
 const thisGit = simpleGit.simpleGit('.')
 
+function keburr (input) {
+    return _.kebabCase(_.deburr(input))
+}
+
 async function main () {
     await thisGit.fetch(['--all'])
     await thisGit.pull(['--all'])
     const branches = await thisGit.branch()
-    await fs.mkdir(path.resolve(__dirname, './tmp'))
-    for(const branch of branches.all.filter(v => v.startsWith)) {
-        
+    for(const branch of branches.all) {
+        const keburrBranch = keburr(branch)
+        const websiteDir = await thisGit.show(`${branch}:website`)
+        const files = websiteDir.split('\n').slice(2).filter(v => v.length > 0);
+        for(const file of files) {
+            const contents = await thisGit.show(`${branch}:website/${file}`)
+            const filepath = path.resolve(__dirname, 'tmp', keburrBranch, file)
+            console.log(filepath)
+            await fs.mkdir(path.dirname(filepath), {recursive: true})
+            await fs.writeFile(filepath, contents)
+        }
     }
 
     branches.all.forEach(branch => console.log(branch))
@@ -28,7 +40,13 @@ async function main () {
     })
 
     fastify.get('/website/:branch', async (req, res) => {
-        return `you got the branch ${req.params.branch}`
+        const fullpath = path.resolve(__dirname, 'tmp', req.params.branch, 'index.html'); 
+        return res.sendFile(path.basename(fullpath), path.dirname(fullpath))
+    })
+
+    fastify.get('/website/:branch/*', async (req, res) => {
+        const fullpath = path.resolve(__dirname, 'tmp', req.params.branch, req.params['*']); 
+        return res.sendFile(path.basename(fullpath), path.dirname(fullpath))
     })
 
     try {
