@@ -36,17 +36,35 @@ async function main () {
     
     fastify.get('/', async (req, res) => {
         res.type('text/html')
-        .send(`<html><body><h1>Branches available:</h1><ul>${branches.all.map(v => `<li><a href="/website/${_.deburr(_.kebabCase(v))}">${v}</a></li>`).join('')}</ul></body></html>`)
+        .send(`<html><body><h1>Current developement:</h1><a href="/dev/">website</a><h1>Branches available:</h1><ul>${branches.all.map(v => `<li><a href="/website/${_.deburr(_.kebabCase(v))}">${v}</a></li>`).join('')}</ul></body></html>`)
+    })
+
+    fastify.get('/dev', async (req, res) => {
+        const fullpath = path.resolve(__dirname, 'website', 'index.html');
+        return res.sendFile(path.basename(fullpath), path.dirname(fullpath))
+    })
+
+    fastify.get('/dev/*', async (req, res) => {
+        const fullpath = path.resolve(__dirname, 'website', req.params['*']); 
+        return res.sendFile(path.basename(fullpath), path.dirname(fullpath))
     })
 
     fastify.get('/website/:branch', async (req, res) => {
-        const fullpath = path.resolve(__dirname, 'tmp', req.params.branch, 'index.html'); 
-        return res.sendFile(path.basename(fullpath), path.dirname(fullpath))
+        const fullpath = path.resolve(__dirname, 'tmp', req.params.branch, 'index.html');
+        const content = await fs.readFile(fullpath)
+        const basefixed = content.toString().replace(`<base href="/dev/">`, `<base href="/website/${req.params.branch}">`)
+        res.type('text/html').send(basefixed)
     })
 
     fastify.get('/website/:branch/*', async (req, res) => {
-        const fullpath = path.resolve(__dirname, 'tmp', req.params.branch, req.params['*']); 
-        return res.sendFile(path.basename(fullpath), path.dirname(fullpath))
+        const fullpath = path.resolve(__dirname, 'tmp', req.params.branch, req.params['*']);
+        if (req.params['*'].endsWith('.html')) {
+            const content = await fs.readFile(fullpath)
+            const basefixed = content.toString().replace(`<base href="/dev/">`, `<base href="/website/${req.params.branch}">`)
+            res.type('text/html').send(basefixed)
+        } else {
+            return res.sendFile(path.basename(fullpath), path.dirname(fullpath))
+        }
     })
 
     try {
