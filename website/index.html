@@ -8,7 +8,14 @@
     <title>KoNews</title>
     <base href="/dev/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body class="has-navbar-fixed-top">
@@ -82,12 +89,96 @@
         </div>
     </section>
 
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div id="top-carousel"
+                data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "arrows": true, "autoplay": true, "autoplaySpeed": 6000}'>
+                <div>
+                    <div class="slider-article">
+                        <figure class="slider-article--image is-square image 256x256">
+                            <img src="/public/img/3.png" alt="Mężczyzna w szacie i krawacie, czarno-białe zdjęcie">
+                        </figure>
+                        <div class="slider-article--text">
+                            <p class="title">Ryby w oceanie zaczynają mówić po angielsku - czy to koniec ciszy pod wodą?</p>    
+                            <p class="subtitle">Ostatnie doniesienia z oceanu wstrząsnęły światem nauki i przyrodników. Okazuje się, że ryby, które dotychczas komunikowały się za pomocą dźwięków i ruchów, zaczęły używać ludzkiego języka - angielskiego! To prawda, nie jest to żaden żart czy efekt szalonych eksperymentów, lecz obserwacje i analizy z renomowanych ośrodków badawczych na całym świecie.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="slider-article">
+                        <figure class="slider-article--image is-square image 256x256">
+                            <img src="/public/img/1.png" alt="Abstrakcyjna sztuka">
+                        </figure>
+                        <div class="slider-article--text">
+                            <p class="title">Króliki zaczynają gryźć ludzi na ulicach miasta - nowe zagrożenie czy zwykła głodna pandemia?</p>
+                            <p class="subtitle">W ostatnich tygodniach miastem wstrząsnęła seria niecodziennych ataków. Króliki, te z pozoru niewinne i miłe stworzenia, nagle zaczęły gryźć ludzi na ulicach, pozostawiając ich z zakrwawionymi rękoma i przerażonym wyrazem twarzy. Czy to nowe zagrożenie czy zwykła głodna pandemia?</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="slider-article">
+                        <figure class="slider-article--image is-square image 256x256">
+                            <img src="/public/img/2.png" alt="Jadeitowy, świecący symbol dysku z krzyżem">
+                        </figure>
+                        <div class="slider-article--text">
+                            <p class="title">Wszyscy ludzie na świecie nagle przestają śnić - co za kosmiczna niespodzianka!</p>
+                            <p class="subtitle">Sny, te tajemnicze podróże przez niesamowite światy wyobraźni, od zawsze fascynowały ludzkość. Ale co się stanie, gdy nagle wszyscy ludzie na świecie przestaną śnić? To pytanie stało się aktualne, gdy naukowcy z całego świata ogłosili niezwykłe odkrycie - ludzie przestali śnić!</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="slider-article">
+                        <figure class="slider-article--image is-square image 256x256">
+                            <img src="/public/img/3.png" alt="Mężczyzna w szacie i krawacie, czarno-białe zdjęcie">
+                        </figure>
+                        <div class="slider-article--text">
+                            <p class="title">Ryby w oceanie zaczynają mówić po angielsku - czy to koniec ciszy pod wodą?</p>    
+                            <p class="subtitle">Ostatnie doniesienia z oceanu wstrząsnęły światem nauki i przyrodników. Okazuje się, że ryby, które dotychczas komunikowały się za pomocą dźwięków i ruchów, zaczęły używać ludzkiego języka - angielskiego! To prawda, nie jest to żaden żart czy efekt szalonych eksperymentów, lecz obserwacje i analizy z renomowanych ośrodków badawczych na całym świecie.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="slider-article">
+                        <figure class="slider-article--image is-square image 256x256">
+                            <img src="/public/img/1.png" alt="Abstrakcyjna sztuka">
+                        </figure>
+                        <div class="slider-article--text">
+                            <p class="title">Króliki zaczynają gryźć ludzi na ulicach miasta - nowe zagrożenie czy zwykła głodna pandemia?</p>
+                            <p class="subtitle">W ostatnich tygodniach miastem wstrząsnęła seria niecodziennych ataków. Króliki, te z pozoru niewinne i miłe stworzenia, nagle zaczęły gryźć ludzi na ulicach, pozostawiając ich z zakrwawionymi rękoma i przerażonym wyrazem twarzy. Czy to nowe zagrożenie czy zwykła głodna pandemia?</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="slider-article">
+                        <figure class="slider-article--image is-square image 256x256">
+                            <img src="/public/img/2.png" alt="Jadeitowy, świecący symbol dysku z krzyżem">
+                        </figure>
+                        <div class="slider-article--text">
+                            <p class="title">Wszyscy ludzie na świecie nagle przestają śnić - co za kosmiczna niespodzianka!</p>
+                            <p class="subtitle">Sny, te tajemnicze podróże przez niesamowite światy wyobraźni, od zawsze fascynowały ludzkość. Ale co się stanie, gdy nagle wszyscy ludzie na świecie przestaną śnić? To pytanie stało się aktualne, gdy naukowcy z całego świata ogłosili niezwykłe odkrycie - ludzie przestali śnić!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section">
         <div class="container">
             <div class="columns">
                 <div class="column is-one-third">
-                    <div class="box has-background-primary">
-                        <img class="image has-ratio 16by9" src="/public/img/1.png">
+                    <div class="card has-shadow">
+                        <div class="card-image">
+                            <figure class="image is-square">
+                                <img src="/public/img/1.png" alt="Abstrakcyjna sztuka">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <p class="subtitle">Title</p>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In ipsa officiis reprehenderit
+                                dicta vel cupiditate neque minus! Possimus sequi saepe dolorum perspiciatis, assumenda
+                                amet, minus modi ea eveniet dicta iste?</p>
+                        </div>
                     </div>
                 </div>
                 <div class="column is-one-third">
@@ -109,6 +200,8 @@
             <p>Stworzzone przez kajetana owczarka z pomocą chatgpt i stable diffusion</p>
         </div>
     </footer>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </body>
 
 </html>
