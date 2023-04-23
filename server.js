@@ -21,13 +21,10 @@ async function main () {
         for(const file of files) {
             const contents = await thisGit.show(`${branch}:website/${file}`)
             const filepath = path.resolve(__dirname, 'tmp', keburrBranch, file)
-            console.log(filepath)
             await fs.mkdir(path.dirname(filepath), {recursive: true})
             await fs.writeFile(filepath, contents)
         }
     }
-
-    branches.all.forEach(branch => console.log(branch))
 
     fastify.register(require('@fastify/static'), {
         root: path.resolve(__dirname, './public'),
