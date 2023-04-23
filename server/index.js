@@ -64,6 +64,10 @@ async function main () {
         }
     })
 
+    fastify.get('/api/top-news', async (req, res) => {
+        
+    })
+
     try {
         await fastify.listen({port: 8012})
     } catch (err) {
