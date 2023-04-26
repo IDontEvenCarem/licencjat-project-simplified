@@ -33,7 +33,7 @@ async function main () {
     
     fastify.get('/', async (req, res) => {
         res.type('text/html')
-        .send(`<html><body><h1>Current developement:</h1><a href="/dev/">website</a><h1>Branches available:</h1><ul>${branches.all.map(v => `<li><a href="/website/${_.deburr(_.kebabCase(v))}">${v}</a></li>`).join('')}</ul></body></html>`)
+            .send(`<html><body><h1>Current developement:</h1><a href="/dev/">website</a><h1>Branches available:</h1><ul>${branches.all.map(v => `<li><a href="/website/${_.deburr(_.kebabCase(v))}">${v}</a></li>`).join('')}</ul></body></html>`)
     })
 
     fastify.get('/dev', async (req, res) => {
@@ -82,6 +82,24 @@ async function main () {
                 text: "Sny, te tajemnicze podróże przez niesamowite światy wyobraźni, od zawsze fascynowały ludzkość. Ale co się stanie, gdy nagle wszyscy ludzie na świecie przestaną śnić? To pytanie stało się aktualne, gdy naukowcy z całego świata ogłosili niezwykłe odkrycie - ludzie przestali śnić!"
             }
         ]
+    })
+
+    fastify.get('/api/newsHeaders', async (req, res) => {
+        const posts = await fs.readdir(path.resolve(__dirname, "posts"))
+        return await Promise.all(posts.map(async postFilename => {
+            const contents = (await fs.readFile(path.resolve(__dirname, 'posts', postFilename))).toString()
+            const [title,,first,...rest] = contents.split("\n");
+            return {title, first}
+        }))
+    })
+
+    fastify.get('/api/news', async (req, res) => {
+        const posts = await fs.readdir(path.resolve(__dirname, "posts"))
+        return await Promise.all(posts.map(async postFilename => {
+            const contents = (await fs.readFile(path.resolve(__dirname, 'posts', postFilename))).toString()
+            const [title,,first,...rest] = contents.split("\n");
+            return {title, first, rest: rest}
+        }))
     })
 
     try {

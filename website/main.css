@@ -10,6 +10,9 @@
 .slider-article--image {
     grid-area: img;
 }
+.slider-article--image > img {
+    border-radius: 5px;
+}
 
 .slider-article--title {
     grid-area: title;
@@ -34,6 +37,7 @@
     }
     .slider-article--title {
         font-size: 1.2rem;
+        text-align: center;
     }
     .slider-article--text {
         font-size: 1rem;
