@@ -28,6 +28,10 @@
     color: black;
 }
 
+.post-column {
+    height: 100%;
+}
+
 @media (max-width: 768px) {
     .slider-article {
         grid-template-columns: 1fr;
