@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", ev => {
     const posts = document.getElementById('post-columns')
     axios.get("/api/newsHeaders")
         .then(response => {
-            _.chunk(response.data, 3).forEach(elems => {
-                const innerText = elems.map(v => `<div class="column is-one-third">
+            response.data.forEach(v => 
+                posts.innerHTML += `<div class="column is-one-third">
                     <div class="card has-shadow post-column">
                         <div class="card-image">
                             <figure class="image is-square">
-                                <img src="/public/img/1.png" alt="Abstrakcyjna sztuka">
+                                <img src="${v.image}" alt="Abstrakcyjna sztuka">
                             </figure>
                         </div>
                         <div class="card-content">
@@ -44,8 +44,7 @@ document.addEventListener("DOMContentLoaded", ev => {
                             <p>${v.first}</p>
                         </div>
                     </div>
-                </div>`).join('')
-                posts.innerHTML += `<div class="columns">${innerText}</div>`
-            })
+                </div>`
+            )
         })
 })

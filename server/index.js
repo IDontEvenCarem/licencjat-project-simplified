@@ -88,8 +88,8 @@ async function main () {
         const posts = await fs.readdir(path.resolve(__dirname, "posts"))
         return await Promise.all(posts.map(async postFilename => {
             const contents = (await fs.readFile(path.resolve(__dirname, 'posts', postFilename))).toString()
-            const [title,,first,...rest] = contents.split("\n");
-            return {title, first}
+            const [title,img,first,...rest] = contents.split("\n");
+            return {title, first, image: img || '/public/img/1.png'}
         }))
     })
 
@@ -97,8 +97,8 @@ async function main () {
         const posts = await fs.readdir(path.resolve(__dirname, "posts"))
         return await Promise.all(posts.map(async postFilename => {
             const contents = (await fs.readFile(path.resolve(__dirname, 'posts', postFilename))).toString()
-            const [title,,first,...rest] = contents.split("\n");
-            return {title, first, rest: rest}
+            const [title,img,first,...rest] = contents.split("\n");
+            return {title, first, rest: rest, image: img || '/public/img/1.png'}
         }))
     })
 
