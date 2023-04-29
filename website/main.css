@@ -5,6 +5,15 @@
     gap: 5ch;
     padding: 0ch 1ch;
     grid-template-areas: "img title" "img text";
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.title {
+    font-family: 'Poppins', sans-serif;
+}
+
+.card-title {
+    font-family: 'Poppins', sans-serif;
 }
 
 .slider-article--image {
@@ -24,7 +33,7 @@
 
 .slider-article--text {
     grid-column: text;
-    font-size: 1.6em;
+    font-size: 1.4em;
     color: black;
 }
 

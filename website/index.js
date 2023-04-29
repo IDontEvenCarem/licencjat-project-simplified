@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", ev => {
                             </figure>
                         </div>
                         <div class="card-content">
-                            <p class="subtitle">${v.title}</p>
+                            <p class="subtitle card-title">${v.title}</p>
                             <p>${v.first}</p>
                         </div>
                     </div>
