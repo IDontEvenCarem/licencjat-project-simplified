@@ -102,6 +102,27 @@ async function main () {
         }))
     })
 
+    fastify.get('/api/lastPoll', (req, res) => {
+        return {
+            "temat": "Czy optymistycznie patrzysz na przyszłość?",
+            "opcje_odpowiedzi": [
+              "Zdecydowanie tak",
+              "Raczej tak",
+              "Nie mam zdania",
+              "Raczej nie",
+              "Zdecydowanie nie"
+            ],
+            "wyniki": {
+              "Zdecydowanie tak": 35,
+              "Raczej tak": 45,
+              "Nie mam zdania": 15,
+              "Raczej nie": 3,
+              "Zdecydowanie nie": 2
+            }
+          }
+          
+    })
+
     try {
         await fastify.listen({port: 8012})
     } catch (err) {

@@ -20,6 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Poppins&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="index.js"></script>
     <link rel="stylesheet" href="main.css">
 </head>
@@ -102,10 +103,19 @@
             </div>
         </div>
     </section>
-    
+
     <section class="section">
         <div class="container">
             <div class="columns is-multiline" id="post-columns"></div>
+        </div>
+    </section>
+
+    <section class="section has-background-primary">
+        <div class="container">
+            <p class="title">Ostatnia ankieta: <span id="recentPollTitle"></span></p>
+            <div class="card p-5">
+                <canvas id="recentPollChart"></canvas>
+            </div>
         </div>
     </section>
 
