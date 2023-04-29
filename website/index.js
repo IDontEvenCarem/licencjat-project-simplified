@@ -1,50 +1,64 @@
-function createCarouselElement (img, title, text) {
-    const wrapper = document.createElement('div')
-    const topElement = document.createElement('div')
-    topElement.classList.add("slider-article")
-    const imgWrapper = document.createElement('figure')
-    imgWrapper.classList.add("slider-article--image", "is-square", "image", "256x256")
-    const imageElement = document.createElement("img")
-    imageElement.src = img
-    imgWrapper.appendChild(imageElement)
-    const titleElement = document.createElement('p')
-    titleElement.classList.add('slider-article--title')
-    titleElement.innerText = title
-    const textElement = document.createElement('p')
-    textElement.classList.add("slider-article--text")
-    textElement.innerText = text
-    wrapper.appendChild(topElement)
-    topElement.append(imgWrapper, titleElement, textElement)
-    return wrapper
-}
-
 document.addEventListener("DOMContentLoaded", ev => {
-    const carousel = document.getElementById("top-carousel")
-    axios.get('/api/top-news')
-        .then(response => {
-            response.data.forEach(({img, title, text}) => {
-                carousel.append(createCarouselElement(img, title, text))
-            })
-            $('#top-carousel').slick({dots: true, speed: 1000})
-        })
+    const {createApp} = Vue;
 
-    const posts = document.getElementById('post-columns')
-    axios.get("/api/newsHeaders")
-        .then(response => {
-            response.data.forEach(v => 
-                posts.innerHTML += `<div class="column is-one-third">
-                    <div class="card has-shadow post-column">
-                        <div class="card-image">
-                            <figure class="image is-square">
-                                <img src="${v.image}" alt="Abstrakcyjna sztuka">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <p class="subtitle card-title">${v.title}</p>
-                            <p>${v.first}</p>
-                        </div>
+    // top news carousel
+    createApp({
+        data() {
+            return {
+                topNews: []
+            }
+        },
+        mounted() {
+            axios.get('/api/top-news').then(response => {
+                this.topNews = response.data;
+                requestAnimationFrame(() => {
+                    $('#top-carousel').slick({dots: true, speed: 1000})
+                })
+            })
+        },
+        template: `
+            <div v-for="neu in topNews">
+                <div class="slider-article">
+                    <figure class="slider-article--image is-square image 256x256">
+                        <img :src="neu.img">
+                    </figure>
+                    <p class="slider-article--title">
+                        {{neu.title}}
+                    </p>
+                    <p class="slider-article--text">
+                        {{neu.text}}
+                    </p>
+                </div>
+            </div>
+        `
+    }).mount('#top-carousel')
+
+    // post list
+    createApp({
+        data() {
+            return {
+                posts: []
+            }
+        },
+        mounted() {
+            axios.get("/api/newsHeaders").then(response => {
+                this.posts = response.data;
+            })
+        },
+        template: `
+            <div v-for="post in posts" class="column is-one-third">
+                <div class="card has-shadow post-column">
+                    <div class="card-image">
+                        <figure class="image is-square">
+                            <img :src="post.image" alt="Abstrakcyjna sztuka">
+                        </figure>
                     </div>
-                </div>`
-            )
-        })
+                    <div class="card-content">
+                        <p class="subtitle card-title">{{post.title}}</p>
+                        <p>{{post.first}}</p>
+                    </div>
+                </div>
+            </div>
+        `
+    }).mount("#post-columns");
 })
