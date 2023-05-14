@@ -67,19 +67,19 @@ async function main () {
     fastify.get('/api/top-news', async (req, res) => {
         return [
             {
-                img: "/public/img/1.png", 
+                img: "/public/img/fish.png", 
                 title: "Ryby w oceanie zaczynają mówić po angielsku - czy to koniec ciszy pod wodą?", 
                 text: "Ostatnie doniesienia z oceanu wstrząsnęły światem nauki i przyrodników. Okazuje się, że ryby, które dotychczas komunikowały się za pomocą dźwięków i ruchów, zaczęły używać ludzkiego języka - angielskiego! To prawda, nie jest to żaden żart czy efekt szalonych eksperymentów, lecz obserwacje i analizy z renomowanych ośrodków badawczych na całym świecie."
             },
             {
-                img: "/public/img/2.png", 
+                img: "/public/img/rabit.png", 
                 title: "Króliki zaczynają gryźć ludzi na ulicach miasta - nowe zagrożenie czy zwykła głodna pandemia?", 
                 text: "W ostatnich tygodniach miastem wstrząsnęła seria niecodziennych ataków. Króliki, te z pozoru niewinne i miłe stworzenia, nagle zaczęły gryźć ludzi na ulicach, pozostawiając ich z zakrwawionymi rękoma i przerażonym wyrazem twarzy. Czy to nowe zagrożenie czy zwykła głodna pandemia?"
             },
             {
-                img: "/public/img/3.png", 
-                title: "Wszyscy ludzie na świecie nagle przestają śnić - co za kosmiczna niespodzianka!", 
-                text: "Sny, te tajemnicze podróże przez niesamowite światy wyobraźni, od zawsze fascynowały ludzkość. Ale co się stanie, gdy nagle wszyscy ludzie na świecie przestaną śnić? To pytanie stało się aktualne, gdy naukowcy z całego świata ogłosili niezwykłe odkrycie - ludzie przestali śnić!"
+                img: "/public/img/potatoes.png", 
+                title: "Wymyśliliśmy maszynę, która zamienia ziemniaki w diamenty", 
+                text: "Naukowcy przełamali kolejną granicę technologiczną - wymyślili maszynę, która zamienia ziemniaki w diamenty! Tak, dobrze przeczytaliście, twoje zwykłe, szare ziemniaki mogą stać się diamentami, dzięki najnowszej technologii."
             }
         ]
     })
@@ -88,7 +88,7 @@ async function main () {
         const posts = await fs.readdir(path.resolve(__dirname, "posts"))
         return await Promise.all(posts.map(async postFilename => {
             const contents = (await fs.readFile(path.resolve(__dirname, 'posts', postFilename))).toString()
-            const [title,img,first,...rest] = contents.split("\n");
+            const [title,img,first, ...rest] = contents.split("\n");
             return {title, first, image: img || '/public/img/1.png'}
         }))
     })
@@ -97,7 +97,7 @@ async function main () {
         const posts = await fs.readdir(path.resolve(__dirname, "posts"))
         return await Promise.all(posts.map(async postFilename => {
             const contents = (await fs.readFile(path.resolve(__dirname, 'posts', postFilename))).toString()
-            const [title,img,first,...rest] = contents.split("\n");
+            const [title,img,first, ...rest] = contents.split("\n");
             return {title, first, rest: rest, image: img || '/public/img/1.png'}
         }))
     })
