@@ -1,3 +1,5 @@
+document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>')
+
 // recent poll
 axios.get('/api/lastPoll').then(response => {
     const chartEl = document.getElementById('recentPollChart')
