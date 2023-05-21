@@ -1,0 +1,44 @@
+.my-button {
+    padding: 10px;
+
+    .theme-dark & {
+        color: white;
+        border: 1px solid white;
+    }
+
+    .theme-light & {
+        color: black;
+        border: 1px solid black;
+    }
+}
+
+@for $i from 0 through 255 {
+    .luma-#{$i} {
+        color: rgb($i, $i, $i);
+    }
+    .luma-bg-#{$i} {
+        background-color: rgb($i, $i, $i);
+        &.fix-text, & .fix-text {
+            @if $i > 127 {
+                color: black;
+            }
+            @else {
+                color: white;
+            }
+        }
+    }
+}
+
+@for $r from 0 through 100 {
+    @for $c from 0 through 100 {
+        div.row-#{$r}.col-#{$c} {
+            display: inline;
+            @if ($r + $c) % 2 == 0 {
+                background-color: darkgray;
+            }
+            @else {
+                background-color: lightgray;
+            }
+        }
+    }
+}
