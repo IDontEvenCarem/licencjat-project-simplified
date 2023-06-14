@@ -1,27 +1,27 @@
-document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>')
+import("https://cdn.jsdelivr.net/npm/chart.js").then(() => {
+    // recent poll
+    axios.get('/api/lastPoll').then(response => {
+        const chartEl = document.getElementById('recentPollChart')
 
-// recent poll
-axios.get('/api/lastPoll').then(response => {
-    const chartEl = document.getElementById('recentPollChart')
+        document.getElementById('recentPollTitle').innerText = response.data.temat
 
-    document.getElementById('recentPollTitle').innerText = response.data.temat
-
-    new Chart(chartEl, {
-        type: 'bar',
-        data: {
-            labels: response.data.opcje_odpowiedzi,
-            datasets: [{
-                label: "Ilość odpowiedzi",
-                data: Object.values(response.data.wyniki),
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        new Chart(chartEl, {
+            type: 'bar',
+            data: {
+                labels: response.data.opcje_odpowiedzi,
+                datasets: [{
+                    label: "Ilość odpowiedzi",
+                    data: Object.values(response.data.wyniki),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
+        })
     })
 })
