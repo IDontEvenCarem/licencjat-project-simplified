@@ -1,16 +1,16 @@
-const IMAGE_EXTENTIONS = ['.png', '.jpg', '.jpeg', '.tiff', '.bmp']
-
 const childProcess = require('child_process')
 const fs = require('fs')
 const path = require('path')
 
+const IMAGE_EXTENTIONS = ['.png', '.jpg', '.jpeg', '.tiff']
 const QUALITY = process.argv[2] || 20
 
 for(const file of fs.readdirSync('.')) {
-    if (!IMAGE_EXTENTIONS.map(ext => file.endsWith(ext)).some(Boolean)) {
+    const pathParsed = path.parse(file)
+    if (!IMAGE_EXTENTIONS.includes(pathParsed.ext)) {
         continue;
     }
-    const newName = `${path.parse(file).name}-${QUALITY}.webp`
+    const newName = `${pathParsed.name}-${QUALITY}.webp`
     const res = childProcess.spawnSync('cwebp', [file, '-q', QUALITY, '-o', newName])
     const msg = res.status === 0 ? "OK" : ("ERR: " + res.stderr.toString())
     console.log(`${file} => ${newName} ${msg}`);
