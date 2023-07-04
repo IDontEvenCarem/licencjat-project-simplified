@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", ev => {
             <div v-for="neu in topNews">
                 <div class="slider-article">
                     <figure class="slider-article--image is-square image 256x256">
-                        <img :src="neu.img">
+                        <img :src="neu.img.replace('-W{!}', '')">
                     </figure>
                     <p class="slider-article--title">
                         {{neu.title}}
@@ -45,12 +45,18 @@ document.addEventListener("DOMContentLoaded", ev => {
                 this.posts = response.data;
             })
         },
+        /* TODO: srcset/sizes needs to reflect the small device width, when the images grow, because they are not in a 3 column grid */
         template: `
             <div v-for="post in posts" class="column is-one-third">
                 <div class="card has-shadow post-column">
                     <div class="card-image">
                         <figure class="image is-square">
-                            <img :src="post.image" alt="Abstrakcyjna sztuka">
+                            <img 
+                                :src="post.image.replace('-W{!}', '')" 
+                                :srcset="\`\${post.image.replace('-W{!}', '-W512')} 512w, \${post.image.replace('-W{!}', '-W256')} 256w\`" 
+                                sizes="(max-width: 864px) 256px, 512px"
+                                alt="Abstrakcyjna sztuka"
+                            >
                         </figure>
                     </div>
                     <div class="card-content">
