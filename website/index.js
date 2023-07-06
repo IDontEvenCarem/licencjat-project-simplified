@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", ev => {
             <div v-for="neu in topNews">
                 <div class="slider-article">
                     <figure class="slider-article--image is-square image 256x256">
-                        <img :src="neu.img.replace('-W{!}', '')">
+                        <img :src="neu.img.replace('-WIDTH', '')">
                     </figure>
                     <p class="slider-article--title">
                         {{neu.title}}
@@ -51,12 +51,11 @@ document.addEventListener("DOMContentLoaded", ev => {
                 <div class="card has-shadow post-column">
                     <div class="card-image">
                         <figure class="image is-square">
-                            <img 
-                                :src="post.image.replace('-W{!}', '')" 
-                                :srcset="\`\${post.image.replace('-W{!}', '-W512')} 512w, \${post.image.replace('-W{!}', '-W256')} 256w\`" 
-                                sizes="(max-width: 864px) 256px, 512px"
-                                alt="Abstrakcyjna sztuka"
-                            >
+                            <picture>
+                                <source :srcset="post.image.replace('WIDTH', 368)" media="(max-width: 416px), (min-width: 770px) and (max-width: 1366px)" />
+                                <source :srcset="post.image.replace('WIDTH', 432)" media="(min-width: 1367px), (min-width: 417px) and (max-width: 480px)" />
+                                <img :src="post.image.replace('WIDTH', 720)">
+                            </picture>
                         </figure>
                     </div>
                     <div class="card-content">
