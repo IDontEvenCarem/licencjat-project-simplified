@@ -20,7 +20,11 @@ document.addEventListener("DOMContentLoaded", ev => {
             <div v-for="neu in topNews">
                 <div class="slider-article">
                     <figure class="slider-article--image is-square image 256x256">
-                        <img :src="neu.img.replace('-WIDTH', '')">
+                        <picture>
+                            <source :srcset="neu.img.replace('WIDTH', 368)" media="(max-width: 416px), (min-width: 770px) and (max-width: 1366px)" />
+                            <source :srcset="neu.img.replace('WIDTH', 432)" media="(min-width: 417px) and (max-width: 480px), (min-width: 1367px)" />
+                            <img :src="neu.img.replace('WIDTH', 720)">
+                        </picture>
                     </figure>
                     <p class="slider-article--title">
                         {{neu.title}}
