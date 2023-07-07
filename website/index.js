@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", ev => {
                         <figure class="image is-square">
                             <picture>
                                 <source :srcset="post.image.replace('WIDTH', 368)" media="(max-width: 416px), (min-width: 770px) and (max-width: 1366px)" />
-                                <source :srcset="post.image.replace('WIDTH', 432)" media="(min-width: 1367px), (min-width: 417px) and (max-width: 480px)" />
+                                <source :srcset="post.image.replace('WIDTH', 432)" media="(min-width: 417px) and (max-width: 480px), (min-width: 1367px)" />
                                 <img :src="post.image.replace('WIDTH', 720)">
                             </picture>
                         </figure>
