@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', ev => {
         ... Array(25).fill(0).map((v, i) => {
             const e = document.createElement('div')
             const luma = (i+1) * 10;
-            e.classList.add("luma-bg-"+luma, "fix-text")
+            e.classList.add("luma-bg", "fix-text")
+            e.style.setProperty('--luma', luma)
             e.innerText = luma
             return e
         })

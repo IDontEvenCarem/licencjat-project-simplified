@@ -21,3 +21,17 @@
 .luma-bg.fix-text, .luma-bg .fix-text {
     color: hsl(0, 0%, calc((var(--luma) - 127) * -1000%));
 }
+
+@for $r from 0 through 100 {
+    @for $c from 0 through 100 {
+        div.row-#{$r}.col-#{$c} {
+            display: inline;
+            @if ($r + $c) % 2 == 0 {
+                background-color: darkgray;
+            }
+            @else {
+                background-color: lightgray;
+            }
+        }
+    }
+}
