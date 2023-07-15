@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CSS props</title>
+    <style>
+        .luma {
+            color: rgb(var(--luma), var(--luma), var(--luma));
+        }
+        .luma-bg {
+            background-color: rgb(var(--luma), var(--luma), var(--luma));
+        }
+        .luma-bg.fix-text, .luma-bg .fix-text {
+            color: hsl(0, 0%, calc((var(--luma) - 127) * -1000%));
+        }
+
+        body {
+            background-color: beige;
+        }
+    </style>
+</head>
+<body>
+    <div class="luma-bg fix-text">L none</div>
+    <div class="luma-bg fix-text" style="--luma: 16;">L 16
+        <div>SUB</div>
+    </div>
+    <div class="luma-bg fix-text" style="--luma: 32;">L 32</div>
+    <div class="luma-bg fix-text" style="--luma: 64;">L 64</div>
+    <div class="luma-bg fix-text" style="--luma: 96;">L 96</div>
+    <div class="luma-bg fix-text" style="--luma: 128;">L 128</div>
+    <div class="luma-bg fix-text" style="--luma: 159;">L 159</div>
+    <div class="luma-bg fix-text" style="--luma: 160;">L 160</div>
+    <div class="luma-bg fix-text" style="--luma: 192;">L 192</div>
+    <div class="luma-bg fix-text" style="--luma: 224;">L 224</div>
+    <div class="luma-bg fix-text" style="--luma: 256;">L 256</div>
+</body>
+</html>
