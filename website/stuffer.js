@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', ev => {
     document.getElementById('grid-receiver').replaceChildren(
         ... Array(100).fill(0).map((_, row) => {
             const rowElement = document.createElement('div')
+            rowElement.style.display = 'flex';
             rowElement.replaceChildren(
                 ... Array(100).fill(0).map((_, col) => {
                     const cellElem = document.createElement('div')
