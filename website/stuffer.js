@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', ev => {
                 ... Array(100).fill(0).map((_, col) => {
                     const cellElem = document.createElement('div')
                     cellElem.classList.add('col-'+col, 'row-'+row)
-                    cellElem.innerText = `Row ${row}, Column ${col}`
+                    cellElem.innerText = `R${row}, C${col}`
                     return cellElem
                 })
             )
