@@ -1,4 +1,4 @@
-import("https://cdn.jsdelivr.net/npm/chart.js").then(() => {
+import("./chart.js").then(() => {
     // recent poll
     axios.get('/api/lastPoll').then(response => {
         const chartEl = document.getElementById('recentPollChart')
