@@ -70,4 +70,34 @@ document.addEventListener("DOMContentLoaded", ev => {
             </div>
         `
     }).mount("#post-columns");
+
+    // load the content-spec asynchronously
+    (async () => {
+        const streamDoc = document.implementation.createHTMLDocument()
+        const decoder = new TextDecoderStream('utf-8')
+        const dlStream = await fetch('content-spec.html')
+        
+        decoder.readable.pipeTo(new WritableStream(
+            {
+                close() {
+                    const asyncDocument = streamDoc.body.firstChild
+                    asyncDocument.remove()
+                    document.getElementById('replace-with-standard').replaceWith(asyncDocument)
+                },
+                abort() {
+                    alert(`Failed to load async content, reason - ${reason}`)
+                },
+                write(chunk) {
+                    streamDoc.write(chunk)
+                }
+            },
+            {
+                highWaterMark: 1024,
+                size(chunk) {
+                    return chunk.length
+                }
+            }
+        ))
+        dlStream.body.pipeTo(decoder.writable)
+    })()
 })
