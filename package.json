@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@fastify/static": "^6.10.1",
+    "bulma": "^0.9.4",
+    "css": "^3.0.0",
     "fastify": "^4.15.0",
     "lodash": "^4.17.21"
   }

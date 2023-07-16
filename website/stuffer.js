@@ -19,8 +19,10 @@ document.addEventListener('DOMContentLoaded', ev => {
             rowElement.replaceChildren(
                 ... Array(100).fill(0).map((_, col) => {
                     const cellElem = document.createElement('div')
-                    cellElem.classList.add('col-'+col, 'row-'+row)
-                    cellElem.innerText = `R${row}, C${col}`
+                    cellElem.classList.add('grid-element', 'col-'+col, 'row-'+row)
+                    cellElem.style.setProperty('--col', col)
+                    cellElem.style.setProperty('--row', row)
+                    cellElem.innerText = `${row.toString().padStart(2, '0')} ${col.toString().padStart(2, '0')}`
                     return cellElem
                 })
             )

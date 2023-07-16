@@ -1,0 +1,53 @@
+@import '../node_modules/bulma/sass/utilities/_all.sass';
+@import '../node_modules/bulma/sass/base/_all.sass';
+@import '../node_modules/bulma/sass/elements/button.sass';
+@import '../node_modules/bulma/sass/elements/container.sass';
+@import '../node_modules/bulma/sass/elements/content.sass';
+@import '../node_modules/bulma/sass/components/navbar.sass';
+@import '../node_modules/bulma/sass/components/card.sass';
+@import '../node_modules/bulma/sass/layout/section.sass';
+@import '../node_modules/bulma/sass/layout/footer.sass';
+@import '../node_modules/bulma/sass/grid/columns.sass';
+@import '../node_modules/bulma/sass/helpers/color.sass';
+@import '../node_modules/bulma/sass/helpers/typography.sass';
+@import '../node_modules/bulma/sass/elements/title.sass';
+@import '../node_modules/bulma/sass/form/shared.sass';
+@import '../node_modules/bulma/sass/form/tools.sass';
+
+.my-button {
+    padding: 10px;
+
+    .theme-dark & {
+        color: white;
+        border: 1px solid white;
+    }
+
+    .theme-light & {
+        color: black;
+        border: 1px solid black;
+    }
+}
+
+.luma {
+    color: rgb(var(--luma), var(--luma), var(--luma));
+}
+.luma-bg {
+    background-color: rgb(var(--luma), var(--luma), var(--luma));
+}
+.luma-bg.fix-text, .luma-bg .fix-text {
+    color: hsl(0, 0%, calc((var(--luma) - 127) * -1000%));
+}
+
+
+#grid-receiver > div:nth-child(2n  ) > div:nth-child(2n  ),
+#grid-receiver > div:nth-child(2n+1) > div:nth-child(2n+1) {
+    background-color: lightgray;
+}
+#grid-receiver > div:nth-child(2n  ) > div:nth-child(2n+1),
+#grid-receiver > div:nth-child(2n+1) > div:nth-child(2n  ) {
+    background-color: darkgray;
+}
+
+.grid-element {
+    padding: 2px;
+}
