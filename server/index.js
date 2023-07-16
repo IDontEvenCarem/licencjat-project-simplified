@@ -11,6 +11,7 @@ async function main () {
     
     fastify.get('/', async (req, res) => {
         const fullpath = path.resolve(__dirname, '..', 'website', 'index.html');
+        res.header('Link', `</style.min.css>; as=style; rel=preload, </slick.css>; as=style; rel=preload, </slick-theme.css>; as=style; rel=preload`)
         return res.sendFile(path.basename(fullpath), path.dirname(fullpath))
     })
 
