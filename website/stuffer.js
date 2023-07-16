@@ -1,8 +1,8 @@
 const arrr = Array(1_000_000).fill(0).map((v, i) => Math.sin(i)*Math.cos(i))
 
 document.addEventListener('DOMContentLoaded', ev => {
-    document.getElementById('luma-receiver').replaceChildren(
-        ... Array(25).fill(0).map((v, i) => {
+    const lumaReceiver = document.getElementById('luma-receiver')
+    lumaReceiver.replaceChildren.apply(lumaReceiver, Array(25).fill(0).map((v, i) => {
             const e = document.createElement('div')
             const luma = (i+1) * 10;
             e.classList.add("luma-bg", "fix-text")
@@ -12,12 +12,13 @@ document.addEventListener('DOMContentLoaded', ev => {
         })
     )
 
-    document.getElementById('grid-receiver').replaceChildren(
-        ... Array(100).fill(0).map((_, row) => {
+    const gridReceiver = document.getElementById('grid-receiver')
+    gridReceiver.replaceChildren.apply(gridReceiver,
+        Array(100).fill(0).map((_, row) => {
             const rowElement = document.createElement('div')
             rowElement.style.display = 'flex';
-            rowElement.replaceChildren(
-                ... Array(100).fill(0).map((_, col) => {
+            rowElement.replaceChildren.apply(rowElement,
+                Array(100).fill(0).map((_, col) => {
                     const cellElem = document.createElement('div')
                     cellElem.classList.add('grid-element', 'col-'+col, 'row-'+row)
                     cellElem.style.setProperty('--col', col)
