@@ -1,4 +1,4 @@
-const arrr = [...[...Array(1_000_000)].map((v,i) => Math.sin(i)*Math.cos(i))]
+const arrr = Array(1_000_000).fill(0).map((v, i) => Math.sin(i)*Math.cos(i))
 
 document.addEventListener('DOMContentLoaded', ev => {
     document.getElementById('luma-receiver').replaceChildren(
